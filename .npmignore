@@ -1,0 +1,69 @@
+# Development files
+test/
+coverage/
+.nyc_output
+*.test.js
+*.spec.js
+
+# Development dependencies
+.eslintrc.js
+jest.config.js
+
+# Documentation and meta files
+.github/
+docs/
+examples/
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git files
+.git/
+.gitignore
+
+# CI/CD files
+.travis.yml
+.circleci/
+.github/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Dependency directories
+node_modules/
+
+# Environment variables
+.env
+.env.test
+.env.production
+
+# Temporary files
+tmp/
+temp/
