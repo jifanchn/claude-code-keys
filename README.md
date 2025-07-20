@@ -15,9 +15,9 @@ npm install -g claude-code-keys
    cck add
    ```
 
-2. **Switch keys:**
+2. **Switch keys and launch Claude Code:**
    ```bash
-   eval $(cck)
+   cck
    ```
 
 3. **List keys:**
@@ -31,27 +31,24 @@ npm install -g claude-code-keys
 
 | Command | Description |
 |---------|-------------|
-| `cck` | Interactive key selection and launch |
+| `cck` | Interactive key selection and launch Claude Code |
 | `cck add` | Add new key configuration |
 | `cck list` | List all keys |
 | `cck delete [name]` | Delete key |
 | `cck help` | Show help |
 
-### Setting Environment Variables
+### Switching Keys
 
-To use a key immediately in your current shell session:
+Simply run `cck` to interactively select a key and immediately launch Claude Code with the selected configuration.
 
 ```bash
-# Interactive selection and set env vars
-eval $(cck)
-
-# Or use a specific key
-eval $(cck switch)
+cck
 ```
 
-This will set:
-- `ANTHROPIC_API_KEY` - Your Claude API key
-- `ANTHROPIC_BASE_URL` - The base URL for the API
+This will:
+1. Show an interactive list of your configured keys
+2. Let you select with arrow keys and press Enter
+3. Launch Claude Code with the selected key's configuration
 
 ### Adding Keys
 
@@ -62,12 +59,10 @@ cck add
 
 ### Switching Keys
 
-```bash
-# Interactive selection
-eval $(cck)
+Simply run `cck` to interactively select a key and immediately launch Claude Code:
 
-# Or use the full command
-eval $(cck switch)
+```bash
+cck
 ```
 
 ### Listing Keys
@@ -98,39 +93,27 @@ Each key contains:
 - `ANTHROPIC_API_KEY` - Your API key
 - `created` - Creation timestamp
 
-## Shell Integration
-
-Add to your `.bashrc`, `.zshrc`, or equivalent:
-
-```bash
-# Quick key switching
-alias cck-switch='eval $(cck)'
-
-# List keys
-alias cck-l='cck list'
-```
 
 ## Examples
+
+### Interactive Key Selection
+![cck-interactive-demo](docs/cck-demo.png)
 
 ```bash
 # Add a production key
 cck add
 # Name: prod
 # URL: https://api.anthropic.com
-# Key: sk-ant-...
+# Key: your-api-key-here
 
 # Add a staging key
 cck add
 # Name: staging
 # URL: https://api-staging.anthropic.com
-# Key: sk-ant-...
+# Key: your-api-key-here
 
-# Switch to production
-eval $(cck)
-# Select "prod" from list
-
-# Verify environment
-echo $ANTHROPIC_API_KEY
+# Switch keys (interactive selection)
+cck
 ```
 
 ## Security

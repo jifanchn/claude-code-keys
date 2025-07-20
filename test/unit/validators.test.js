@@ -23,12 +23,13 @@ describe('Validators', () => {
     test('should validate valid API keys', () => {
       expect(Validators.validateApiKey('sk-ant-valid-key-here')).toBe('sk-ant-valid-key-here')
       expect(Validators.validateApiKey('  sk-ant-valid-key  ')).toBe('sk-ant-valid-key')
+      expect(Validators.validateApiKey('kimi-api-key-123456')).toBe('kimi-api-key-123456')
+      expect(Validators.validateApiKey('any-provider-key')).toBe('any-provider-key')
     })
 
     test('should reject invalid API keys', () => {
       expect(() => Validators.validateApiKey('')).toThrow('API key is required and must be a string')
-      expect(() => Validators.validateApiKey('invalid-key')).toThrow('API key must start with "sk-ant-"')
-      expect(() => Validators.validateApiKey('sk-ant-short')).toThrow('API key appears to be too short')
+      expect(() => Validators.validateApiKey('   ')).toThrow('API key cannot be empty')
       expect(() => Validators.validateApiKey(null)).toThrow('API key is required and must be a string')
     })
   })

@@ -170,9 +170,17 @@ describe('KeyManager', () => {
 
       const result = await keyManager.deleteKey('test1')
 
-      expect(mockStorage.saveKeys).toHaveBeenCalledWith([mockKeys[1]])
+      expect(mockStorage.saveKeys).toHaveBeenCalledWith([expect.objectContaining({
+        name: 'test2',
+        ANTHROPIC_BASE_URL: 'url2',
+        ANTHROPIC_API_KEY: 'key2'
+      })])
       expect(mockStorage.setCurrentKey).toHaveBeenCalledWith('test2')
-      expect(result).toEqual(mockKeys[0])
+      expect(result).toEqual({
+        name: 'test1',
+        ANTHROPIC_BASE_URL: 'url1',
+        ANTHROPIC_API_KEY: 'key1'
+      })
     })
 
     test('should set current key to null if no keys remain', async () => {
