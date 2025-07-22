@@ -97,7 +97,10 @@ Each key contains:
 ## Examples
 
 ### Interactive Key Selection
-![cck-interactive-demo](docs/cck-demo.png)
+![Key List View](list.jpg)
+
+### Login Interface
+![Login Interface](login.jpg)
 
 ```bash
 # Add a production key
