@@ -10,12 +10,13 @@ class KeyManager {
     await this.storage.init()
   }
 
-  async addKey (name, anthropicBaseUrl, anthropicApiKey) {
+  async addKey (name, anthropicBaseUrl, anthropicApiKey, environmentVariables = {}) {
     const keyConfig = {
       name: name.trim(),
       ANTHROPIC_BASE_URL: anthropicBaseUrl.trim(),
       ANTHROPIC_API_KEY: anthropicApiKey.trim(),
-      created: new Date().toISOString()
+      created: new Date().toISOString(),
+      environmentVariables: environmentVariables || {}
     }
 
     Validators.validateKeyConfiguration(keyConfig)

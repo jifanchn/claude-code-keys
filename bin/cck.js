@@ -54,7 +54,8 @@ async function handleSwitch () {
       const env = {
         ...process.env,
         ANTHROPIC_API_KEY: key.ANTHROPIC_API_KEY,
-        ANTHROPIC_BASE_URL: key.ANTHROPIC_BASE_URL
+        ANTHROPIC_BASE_URL: key.ANTHROPIC_BASE_URL,
+        ...key.environmentVariables
       }
 
       const child = spawn(claudeCommand, process.argv.slice(2), {
@@ -88,7 +89,8 @@ program
       await keyManager.addKey(
         answers.name,
         answers.ANTHROPIC_BASE_URL,
-        answers.ANTHROPIC_API_KEY
+        answers.ANTHROPIC_API_KEY,
+        answers.environmentVariables
       )
       console.log(chalk.green(`✓ Added key: ${answers.name}`))
     } catch (error) {
@@ -119,6 +121,12 @@ program
         console.log(`  URL: ${key.ANTHROPIC_BASE_URL}`)
         console.log(`  Key: ${maskedKey}`)
         console.log(`  Created: ${new Date(key.created).toLocaleString()}`)
+        if (key.environmentVariables && Object.keys(key.environmentVariables).length > 0) {
+          console.log(`  Environment Variables: ${Object.keys(key.environmentVariables).length}`)
+          Object.entries(key.environmentVariables).forEach(([name, value]) => {
+            console.log(`    ${name}: ${value}`)
+          })
+        }
         console.log('─'.repeat(50))
       })
     } catch (error) {

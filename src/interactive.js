@@ -44,10 +44,67 @@ class Interactive {
             return error.message
           }
         }
+      },
+      {
+        type: 'confirm',
+        name: 'addEnvVars',
+        message: 'Add custom environment variables?',
+        default: false
       }
     ]
 
-    return inquirer.prompt(questions)
+    const answers = await inquirer.prompt(questions)
+
+    if (answers.addEnvVars) {
+      const envVars = await this.promptEnvironmentVariables()
+      answers.environmentVariables = envVars
+    } else {
+      answers.environmentVariables = {}
+    }
+
+    return answers
+  }
+
+  static async promptEnvironmentVariables () {
+    const envVars = {}
+    let addMore = true
+
+    while (addMore) {
+      const { name, value } = await inquirer.prompt([
+        {
+          type: 'input',
+          name: 'name',
+          message: 'Environment variable name (or press enter to finish):',
+          validate: (input) => {
+            if (!input || input.trim() === '') return true
+            try {
+              const testObj = { [input]: 'test' }
+              Validators.validateEnvironmentVariables(testObj)
+              return true
+            } catch (error) {
+              return error.message
+            }
+          }
+        },
+        {
+          type: 'input',
+          name: 'value',
+          message: 'Environment variable value:',
+          when: (answers) => answers.name && answers.name.trim() !== '',
+          validate: (input) => {
+            return input !== undefined ? true : 'Value is required'
+          }
+        }
+      ])
+
+      if (!name || name.trim() === '') {
+        addMore = false
+      } else {
+        envVars[name.trim()] = value || ''
+      }
+    }
+
+    return envVars
   }
 
   static async promptSelectKey (keys) {
