@@ -13,7 +13,8 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint src/ bin/ test/",
     "lint:fix": "eslint src/ bin/ test/ --fix",
-    "build": "npm test && npm run lint"
+    "build": "npm test && npm run lint",
+    "publish": "npm config set registry https://registry.npmjs.org/ && npm publish && npm config set registry https://registry.npmmirror.com"
   },
   "keywords": [
     "claude",

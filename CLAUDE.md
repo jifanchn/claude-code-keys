@@ -70,6 +70,9 @@ npm run lint:fix
 
 # Build for distribution
 npm run build
+
+# Publish to official npm registry (switches registry temporarily)
+npm run publish
 ```
 
 ## Testing Requirements

@@ -146,6 +146,34 @@ npm test
 npm run test:coverage
 ```
 
+## Publishing to NPM
+
+This package is published to the official npm registry. To publish a new version:
+
+```bash
+# Switch to official npm registry
+npm config set registry https://registry.npmjs.org/
+
+# Login to npm (if not already logged in)
+npm login
+
+# Publish to official registry
+npm publish
+
+# Switch back to Chinese mirror for development
+npm config set registry https://registry.npmmirror.com
+```
+
+### Publishing Workflow
+
+1. **Update version** in `package.json`
+2. **Run tests** to ensure everything works
+3. **Switch to official registry** for publishing
+4. **Publish** to npm
+5. **Switch back** to Chinese mirror for development
+
+The package is configured as a global CLI tool with the executable name `cck`.
+
 ## Requirements
 
 - Node.js >= 16.0.0
