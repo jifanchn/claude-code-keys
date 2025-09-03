@@ -1,10 +1,10 @@
 {
   "name": "claude-code-keys",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Global CLI tool for managing Claude API key configurations",
   "main": "src/index.js",
   "bin": {
-    "cck": "./bin/cck.js"
+    "cck": "bin/cck.js"
   },
   "preferGlobal": true,
   "scripts": {

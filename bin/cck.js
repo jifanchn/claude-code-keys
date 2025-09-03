@@ -53,9 +53,16 @@ async function handleSwitch () {
       // Create new env object, cck keys will override existing ones
       const env = {
         ...process.env,
-        ANTHROPIC_API_KEY: key.ANTHROPIC_API_KEY,
         ANTHROPIC_BASE_URL: key.ANTHROPIC_BASE_URL,
         ...key.environmentVariables
+      }
+
+      // Only set ANTHROPIC_API_KEY if it exists in the key configuration
+      if (key.ANTHROPIC_API_KEY) {
+        env.ANTHROPIC_API_KEY = key.ANTHROPIC_API_KEY
+      } else {
+        // Remove ANTHROPIC_API_KEY from environment if not in key config
+        delete env.ANTHROPIC_API_KEY
       }
 
       const child = spawn(claudeCommand, process.argv.slice(2), {
