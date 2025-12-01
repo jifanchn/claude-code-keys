@@ -65,7 +65,16 @@ async function handleSwitch () {
         delete env.ANTHROPIC_API_KEY
       }
 
-      const child = spawn(claudeCommand, process.argv.slice(2), {
+      // Prepare arguments for claude command
+      const args = [...process.argv.slice(2)]
+      const hasMcpConfig = args.some(arg => arg.startsWith('--mcp-config'))
+
+      // Add default MCP config if not specified
+      if (!hasMcpConfig) {
+        args.push('--mcp-config', '.mcp.json')
+      }
+
+      const child = spawn(claudeCommand, args, {
         stdio: 'inherit',
         env
       })
