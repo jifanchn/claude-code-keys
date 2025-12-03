@@ -1,0 +1,20 @@
+{
+"mcpServers": {
+    "hub-openapi-server": {
+      "type": "http",
+      "url": "http://192.168.130.227:31550",
+      "description": "【户用储能hub平台openapi开放服务】用于查询设备、设备信息、设备配置等各种信息",
+      "headers": {
+        "Authorization": "Bearer sk_5a8d2e9b3c7f401a6b0d4e2c8f5a9b3d"
+      }
+    },
+    "pangu-openapi-server": {
+      "type": "http",
+      "url": "http://192.168.130.227:30890",
+      "description": "【pangu储能平台openapi开放服务】用于查询项目、设备信息、收益等各种信息",
+      "headers": {
+        "Authorization": "Bearer sk_51Mn8XyK2l9PqW3vZ7AbC4DfGhJkLmN6T"
+      }
+    }
+  }
+}

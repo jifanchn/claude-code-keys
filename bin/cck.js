@@ -69,9 +69,15 @@ async function handleSwitch () {
       const args = [...process.argv.slice(2)]
       const hasMcpConfig = args.some(arg => arg.startsWith('--mcp-config'))
 
-      // Add default MCP config if not specified
+      // Add default MCP config if not specified and .mcp.json exists in current directory
       if (!hasMcpConfig) {
-        args.push('--mcp-config', '.mcp.json')
+        const fs = require('fs')
+        const path = require('path')
+        const mcpConfigPath = path.join(process.cwd(), '.mcp.json')
+
+        if (fs.existsSync(mcpConfigPath)) {
+          args.push('--mcp-config', '.mcp.json')
+        }
       }
 
       const child = spawn(claudeCommand, args, {
